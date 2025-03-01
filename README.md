@@ -1,19 +1,21 @@
 # Mini-Scan Submission
 
-A submission of the takehome assignment described below is included in branch `censys_submission_abdul` in this repo.  
+A submission of the mini-scan take home assignment described below.  
 
 --
 
 The solution was implemented using an sqlite3 database. 
+
 One challenging aspect of the project was an issue with running sqlite3 in docker with a CGO_ENABLED=0.  
+
 To overcome this obstacle, a base image that supports CGO_ENABLED=1 (frolvlad/alpine-glibc) was used. 
 
-Next steps include 
+Next steps include:
 
-1) switching to a PostgreSQL database
-2) handling failures with a DLQ or passing the timestamp in the message to make sure the most recent update is saved
-3) pushing to the cloud to test horizontal scaling which the emulater does not support
-4) Actually scan the local network
+1) Switching to a PostgreSQL database.
+2) Handling failures with a DLQ and/or passing the timestamp in the message to make sure the most recent update is saved.
+3) Pushing to the cloud to test horizontal scaling which the emulater does not support.
+4) Actually scan the local network.
 
 ---
 
