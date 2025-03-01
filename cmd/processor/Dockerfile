@@ -5,6 +5,9 @@ WORKDIR /src
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 COPY . .
+CMD ["go", "test", "-v", "./..."]
+CMD ["go", "test", "-v", "pkg/scanning/..."]
+
 RUN CGO_ENABLED=1 go build -o processor ./cmd/processor
 
 FROM frolvlad/alpine-glibc

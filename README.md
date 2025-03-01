@@ -1,4 +1,27 @@
-# Mini-Scan
+# Mini-Scan Submission
+
+A submission of the takehome assignment described below is included in branch `censys_submission_abdul` in this repo.  
+
+--
+
+The solution was implemented using an sqlite3 database. 
+The most challenging aspect of the project was an issue with running sqlite3 in docker with a CGO_ENABLED=0.  
+To overcome this obstacle, a base image that supports CGO_ENABLED=1 (frolvlad/alpine-glibc) was used.
+
+---
+
+To test changes to `cmd/proessor/main.go` by examining the processor's collection of scan results run 
+
+`docker system prune --all --volumes --force`
+`docker compose up --build`  # this runs unit tests 
+`docker-compose run --entrypoint /bin/sh processor`
+`sqlite3 /data/processor.db`
+`select * from scans`
+
+
+----- 
+
+# Original Assignment
 
 Hello!
 
