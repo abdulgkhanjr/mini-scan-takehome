@@ -5,18 +5,34 @@ A submission of the takehome assignment described below is included in branch `c
 --
 
 The solution was implemented using an sqlite3 database. 
-The most challenging aspect of the project was an issue with running sqlite3 in docker with a CGO_ENABLED=0.  
-To overcome this obstacle, a base image that supports CGO_ENABLED=1 (frolvlad/alpine-glibc) was used.
+One challenging aspect of the project was an issue with running sqlite3 in docker with a CGO_ENABLED=0.  
+To overcome this obstacle, a base image that supports CGO_ENABLED=1 (frolvlad/alpine-glibc) was used. 
+
+Next steps include 
+
+1) switching to a PostgreSQL database
+2) handling failures with a DLQ or passing the timestamp in the message to make sure the most recent update is saved
+3) pushing to the cloud to test horizontal scaling which the emulater does not support
+4) Actually scan the local network
 
 ---
 
 To test changes to `cmd/proessor/main.go` by examining the processor's collection of scan results run 
 
 `docker system prune --all --volumes --force`
+
 `docker compose up --build`  # this runs unit tests 
+
 `docker-compose run --entrypoint /bin/sh processor`
+
 `sqlite3 /data/processor.db`
+
 `select * from scans`
+
+
+Unit tests are available in cmd/processor and pkg/scanning for your enjoyment. 
+
+Thank You and have a great day!
 
 
 ----- 
